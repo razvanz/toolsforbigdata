@@ -1,0 +1,9 @@
+MATCH (p:Product {productName:"Uncle Bob\'s Organic Dried Pears"})<-[:ORDERS]-(o:Order)
+WITH o
+MATCH (o)-[:ORDERS]->(pd:Product)
+WHERE NOT pd.productName="Uncle Bob\'s Organic Dried Pears"
+RETURN pd, count(*) as nr_of_orders
+ORDER BY nr_of_orders DESC
+LIMIT 1;
+
+// In the provided dataset actually the first 2 have been ordered equal times of 4

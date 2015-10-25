@@ -1,0 +1,6 @@
+MATCH (p:Product {productName:"Uncle Bob\'s Organic Dried Pears"})<-[:ORDERS]-(o:Order)
+WITH o
+MATCH (o)-[:ORDERS]->(pd:Product)
+WHERE NOT pd.productName="Uncle Bob\'s Organic Dried Pears"
+WITH distinct pd as other_prod
+RETURN collect(other_prod) as products, count(*) as different_prod_no;

@@ -1,0 +1,6 @@
+MATCH (c:Customer {customerID:ALFKI})-[:PURCHASED]->(o:Order)
+WITH o
+MATCH (o)-[:ORDERS]->(p:Product)
+WITH o, collect(p) as pd, count(*) as p_no
+WHERE p_no > 1
+RETURN o as order, pd as products, p_no;

@@ -1,0 +1,5 @@
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:ORDERS]->(p:Product)
+OPTIONAL MATCH (c:Customer {customerID:"ALFKI"})-[:PURCHASED]->(o:Order)-[:ORDERS]->(p:Product)
+RETURN distinct c as cust, collect(p) as purchased, count(p) as count
+ORDER BY count DESC
+LIMIT 1;

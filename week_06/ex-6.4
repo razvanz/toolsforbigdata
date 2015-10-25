@@ -1,0 +1,2 @@
+MATCH (p:Product {productID:"7"})<-[:ORDERS]-(o:Order)<-[:PURCHASED]-(c:Customer)
+RETURN distinct c.companyName, count(*) as purchased_no;
